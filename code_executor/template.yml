@@ -27,4 +27,3 @@ Resources:
               Action:
                 - dynamodb:GetItem
               Resource: !Sub arn:aws:dynamodb:*:${AWS::AccountId}:table/code_challenge
-
