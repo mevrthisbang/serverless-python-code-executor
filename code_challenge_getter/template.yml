@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Serverless Python Code Executor
+  Serverless Python Code Challenge Getter
 
-  SAM Template for Serverless Python Code Executor
+  SAM Template for Serverless Python Code Challenge Getter
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -12,7 +12,7 @@ Globals:
     MemorySize: 128
 
 Resources:
-  ServerlessPythonCodeExecutorFunction:
+  ServerlessPythonCodeChallengeGetterFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: code/
@@ -20,4 +20,11 @@ Resources:
       Runtime: python3.11
       Architectures:
         - x86_64 
+      Policies:
+        - Statement:
+            - Sid: DynamoDBCodeChallengeReadAccess
+              Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource: !Sub arn:aws:dynamodb:*:${AWS::AccountId}:table/code_challenge
 
