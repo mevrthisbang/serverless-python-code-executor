@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+    CodeChallenge:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: "code_challenge"
+        AttributeDefinitions: 
+          - 
+            AttributeName: "challenge_id"
+            AttributeType: "S"
+        KeySchema: 
+        - 
+          AttributeName: "challenge_id"
+          KeyType: "HASH"
+        DeletionProtectionEnabled: "true"
+        BillingMode: "PAY_PER_REQUEST"
